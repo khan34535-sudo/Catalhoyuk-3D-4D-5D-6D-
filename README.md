@@ -1,8 +1,8 @@
 # Rights Notice & Review Status
 
 **Project:** Çatalhöyük 3D / 4D / 5D / 6D – Interactive Excavation Matrix  
-**Repository:** https://github.com/khan34535-sudo/Catalhoyuk-3D-4D-5D-6D-  
-**Live Demo:** https://khan34535-sudo.github.io/Catalhoyuk-3D-4D-5D-6D-/
+**Repository:**https://github.com/khan34535-sudo/Catalhoyuk-Time-Space   
+**Live Demo:**
 
 ---
 
