@@ -274,6 +274,7 @@
     <button class="nav-btn active" id="btn-master" onclick="switchMode('master')">Excavation Site</button>
     <button class="nav-btn" id="btn-index" onclick="openModal('modal-index')">Sector Index (7)</button>
     <button class="nav-btn" id="btn-synthesis" style="border-color:var(--aged-gold); color:var(--aged-gold);" onclick="openModal('modal-synthesis')">Synthesis & Notes</button>
+    <button class="nav-btn" id="btn-credits" style="border-color:var(--aged-gold); color:var(--aged-gold);" onclick="openModal('modal-credits')">Analyst Credits</button>
   </div>
 </header>
 
@@ -286,10 +287,10 @@
 
 <div class="bottom-toolbar">
   <div style="display:flex; gap:6px;">
-    <button class="nav-btn active" id="btn-dim-3" onclick="setDimension(3)">3D</button>
-    <button class="nav-btn" id="btn-dim-4" onclick="setDimension(4)">4D</button>
-    <button class="nav-btn" id="btn-dim-5" onclick="setDimension(5)">5D</button>
-    <button class="nav-btn" id="btn-dim-6" onclick="setDimension(6)">6D</button>
+    <button class="nav-btn active" id="btn-dim-3" title="Footprints, heights and roof access" onclick="setDimension(3)">Space</button>
+    <button class="nav-btn" id="btn-dim-4" title="Adds occupation phases over time" onclick="setDimension(4)">+ Time</button>
+    <button class="nav-btn" id="btn-dim-5" title="Adds documented finds per house" onclick="setDimension(5)">+ Finds</button>
+    <button class="nav-btn" id="btn-dim-6" title="Adds links between houses by shared find type or analyst" onclick="setDimension(6)">+ Network</button>
     <button class="nav-btn" id="btn-play" style="display:none;" onclick="togglePlay()">▶ Play</button>
   </div>
   <div style="display:flex; gap:6px;">
@@ -373,13 +374,41 @@
         <li><strong>Indirect Stone Boiling:</strong> Clay spheres heated in embers and placed into liquid-filled baskets or wooden vessels for cooking prior to the widespread use of direct-heat cooking pots.</li>
       </ul>
 
+      <h3 style="color:var(--aged-gold); margin-top:16px; text-transform:uppercase; font-size:14px; letter-spacing:0.06em;">4. Lithic Technology & Obsidian</h3>
+      <p>
+        Obsidian was a prized imported material, and the site's obsidian caches show how it was stored, worked and used (Carter, 2007, 2011; Carter &amp; Milić, 2013; Carter &amp; Shackley, 2007):
+      </p>
+      <ul style="margin-left:20px; margin-bottom:12px; line-height:1.7;">
+        <li><strong>Sourcing:</strong> Geochemical (EDXRF) sourcing links the site's obsidian to Cappadocian volcanoes such as Göllü Dağ (Carter &amp; Shackley, 2007).</li>
+        <li><strong>Hoarding:</strong> Obsidian blanks were cached in sub-floor hoards, as in the Building 1 pit (Carter, 2007).</li>
+        <li><strong>Polished Mirrors:</strong> Polished obsidian pieces in the Building 52 sequence were reflective objects, not just cutting tools (Carter, 2011).</li>
+        <li><strong>Projectile Technology:</strong> Bifacial hunting points from the Building 77 cache document late-phase projectile production (Carter &amp; Milić, 2013).</li>
+      </ul>
+
       <div class="apa-citation">
         <strong>APA Citation References:</strong>
+        <div class="apa-entry">Carter, T. (2007). Of blanks and burials: Hoarding obsidian at Neolithic Çatalhöyük. In L. Astruc, D. Binder, &amp; F. Briois (Eds.), <em>Technical systems and Near Eastern PPN communities</em> (pp. 343–355). Antibes.</div>
+        <div class="apa-entry">Carter, T. (2011). A true gift of mother earth: The use and significance of obsidian at Çatalhöyük. <em>Anatolian Studies, 61</em>, 1–19. <a href="https://doi.org/10.1017/S0066154600008759" target="_blank" rel="noopener">https://doi.org/10.1017/S0066154600008759</a></div>
+        <div class="apa-entry">Carter, T., &amp; Milić, M. (2013). The chipped stone. In I. Hodder (Ed.), <em>Substantive technologies at Çatalhöyük: Reports from the 2000–2008 seasons</em> (pp. 417–478). Cotsen Institute of Archaeology Press &amp; British Institute at Ankara.</div>
+        <div class="apa-entry">Carter, T., &amp; Shackley, M. S. (2007). Sourcing obsidian from Neolithic Çatalhöyük (Turkey) using energy dispersive X-ray fluorescence. <em>Archaeometry, 49</em>(3), 437–454.</div>
         <div class="apa-entry">Hendy, J., Colonese, A. C., Franz, I., Fernandes, R., Fischer, R., Orton, D., Lucquin, A., Spindler, L., Anvari, J., Stroud, E., Biehl, P. F., Speller, C., Boivin, N., Mackie, M., Jersie-Christensen, R. R., Olsen, J. V., Collins, M. J., Craig, O. E., &amp; Rosenstock, E. (2018). Ancient proteins from ceramic vessels at Çatalhöyük West reveal the hidden cuisine of early farmers. <em>Nature Communications, 9</em>, Article 4064. <a href="https://doi.org/10.1038/s41467-018-06335-6" target="_blank" rel="noopener">https://doi.org/10.1038/s41467-018-06335-6</a></div>
         <div class="apa-entry">Hodder, I. (2006). <em>The leopard’s tale: Revealing the mysteries of Çatalhöyük</em>. Thames &amp; Hudson.</div>
         <div class="apa-entry">Larsen, C. S., Hillson, S. W., Boz, B., Pilloud, M. A., Sadvari, J. W., Agarwal, S. C., Glencross, B., Beauchesne, P., Pearson, J., Ruff, C. B., Garofalo, E. M., Hager, L. D., Haddow, S. D., &amp; Knüsel, C. J. (2015). Bioarchaeology of Neolithic Çatalhöyük: Lives and lifestyles of an early farming society in transition. <em>Journal of World Prehistory, 28</em>(1), 27–68. <a href="https://doi.org/10.1007/s10963-015-9084-6" target="_blank" rel="noopener">https://doi.org/10.1007/s10963-015-9084-6</a></div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ANALYST CREDITS MODAL -->
+<div class="modal-overlay" id="modal-credits">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('modal-credits')">✕</button>
+      <span class="spec-badge" style="background:var(--rust-primary);">Credits</span>
+      <h2>Specialist Analysts</h2>
+      <div class="subtitle">Everyone credited across the excavation finds, with the finds they analysed</div>
+    </div>
+    <div class="modal-body" id="credits-body"></div>
   </div>
 </div>
 
@@ -442,7 +471,7 @@ window.BUILDINGS = {
         academic_importance:'EDXRF sourcing links material directly to Cappadocian volcanoes (Göllü Dağ) 190km away.',
         public_importance:'A hidden stash of ultra-sharp volcanic glass knives imported from distant mountains.',
         body: `<p>A hoard of unretouched obsidian pressure blades.</p>`,
-        apa: 'Carter, T. (2007). Sourcing obsidian from Çatalhöyük. *Journal of Arch. Science*.'
+        apa: 'Carter, T. (2007). Of blanks and burials: Hoarding obsidian at Neolithic Çatalhöyük. In L. Astruc, D. Binder, & F. Briois (Eds.), *Technical systems and Near Eastern PPN communities* (pp. 343–355). Antibes.'
       }
     }
   },
@@ -452,7 +481,8 @@ window.BUILDINGS = {
     intro: 'In-situ wild aurochs horn installations, 80+ clay cooking spheres, grain bins.',
     artifacts: [
       { key: 'bull_horn',   pos: [-4.0, 2.3, -1.8],  color: '#d4af37', label: "Aurochs Horns", type: 'horns' },
-      { key: 'clay_balls',  pos: [-3.6, 0.4, 1.9],   color: '#c05a30', label: 'Clay Balls (80+)', type: 'clayballs' }
+      { key: 'clay_balls',  pos: [-3.6, 0.4, 1.9],   color: '#c05a30', label: 'Clay Balls (80+)', type: 'clayballs' },
+      { key: 'faunal_b2', pos: [2.8, 0.3, 2.0], color: '#8fb87a', label: 'Faunal Bone Deposit', type: 'clayballs' }
     ],
     panels: {
       bull_horn: {
@@ -472,6 +502,15 @@ window.BUILDINGS = {
         public_importance:'Clay "boiling stones" heated in fires and dropped into water-filled baskets to cook food before pots existed!',
         body: `<p>80+ baked clay balls containing absorbed tallow residues.</p>`,
         apa: 'Atalay, S. (2005). Fired clay balls at Çatalhöyük.'
+      },
+      faunal_b2: {
+        badge:'Zooarchaeology', badgeColor:'#8fb87a', who:'Dr. Nerissa Russell', title:'Faunal Bone Deposit', subtitle:'Cattle, sheep & goat remains',
+        what:'Butchered wild and domestic animal bone', where:'Midden fill beside the main room', when:'c. 6500 BCE',
+        why:'Food waste from meals and communal feasting.',
+        academic_importance:'Species and age profiles help show how wild cattle hunting, herding of sheep and goat, and feasting were balanced in the economy.',
+        public_importance:'The leftovers of big community meals, showing what people ate and hunted.',
+        body: `<p>Cut marks and breakage patterns record how carcasses were processed and shared.</p>`,
+        apa: 'Russell, N., & Martin, L. (2005). Çatalhöyük mammal remains. In I. Hodder (Ed.), *Inhabiting Çatalhöyük: Reports from the 1995–99 seasons* (pp. 33–98). McDonald Institute for Archaeological Research.'
       }
     }
   },
@@ -500,7 +539,7 @@ window.BUILDINGS = {
         academic_importance:'Optical micro-profilometry shows extraordinary flat surface polishing achieved without metal tools.',
         public_importance:'A dark, highly polished volcanic glass mirror used over 8,000 years ago!',
         body: `<p>Hemispherical mirror polished to high optical reflectivity.</p>`,
-        apa: 'Carter, T. (2011). Obsidian at Çatalhöyük. *Anatolian Studies*.'
+        apa: 'Carter, T. (2011). A true gift of mother earth: The use and significance of obsidian at Çatalhöyük. *Anatolian Studies, 61*, 1–19.'
       }
     }
   },
@@ -509,7 +548,8 @@ window.BUILDINGS = {
     startYear: 6600, endYear: 6400, color: '#c05a30', pos: [-14, 0, 6],
     intro: 'Loom weight hoards, mineralized flax textiles, bone bodkins.',
     artifacts: [
-      { key: 'loom_weights', pos: [-2.0, 0.3, -1.5], color: '#d4af37', label: 'Clay Loom Weights', type: 'clayballs' }
+      { key: 'loom_weights', pos: [-2.0, 0.3, -1.5], color: '#d4af37', label: 'Clay Loom Weights', type: 'clayballs' },
+      { key: 'ground_stone_b3', pos: [2.2, 0.3, 1.8], color: '#e6c594', label: 'Querns & Grinders', type: 'clayballs' }
     ],
     panels: {
       loom_weights: {
@@ -520,6 +560,15 @@ window.BUILDINGS = {
         public_importance:'Heavy clay weights that held threads tight on early wooden weaving looms.',
         body: `<p>Set of 12 clay weights aligned along the floor where a loom stood.</p>`,
         apa: 'Granger-Taylor, H. (2000). Textile remains from Çatalhöyük.'
+      },
+      ground_stone_b3: {
+        badge:'Ground Stone', badgeColor:'#e6c594', who:'Dr. Christina Tsoraki', title:'Querns & Grinders', subtitle:'Grain-processing stones',
+        what:'Saddle querns and hand grinders', where:'Floor beside the hearth', when:'c. 6500 BCE',
+        why:'Daily grinding of cereals and pulses.',
+        academic_importance:'Use-wear and raw material choice show how grain processing was organised within the household.',
+        public_importance:'The stone tools used every day to turn grain into flour.',
+        body: `<p>Wear patterns on the grinding surfaces record the repeated motion of daily food preparation.</p>`,
+        apa: 'Tsoraki, C. (2021). The ground stone technologies at Neolithic Çatalhöyük: Issues of production, use and deposition. In I. Hodder (Ed.), *The matter of Çatalhöyük: Reports from the 2009–2017 seasons* (pp. 309–370). British Institute at Ankara.'
       }
     }
   },
@@ -528,7 +577,8 @@ window.BUILDINGS = {
     startYear: 6900, endYear: 6700, color: '#a65233', pos: [-2, 0, 8],
     intro: 'Molded plaster animal reliefs, leopard murals.',
     artifacts: [
-      { key: 'leopard_relief', pos: [0, 2.2, -3.8], color: '#d4af37', label: 'Leopard Plaster Relief', type: 'painting' }
+      { key: 'leopard_relief', pos: [0, 2.2, -3.8], color: '#d4af37', label: 'Leopard Plaster Relief', type: 'painting' },
+      { key: 'figurines_b17', pos: [2.5, 0.9, -1.5], color: '#d96b8f', label: 'Clay Figurines', type: 'painting' }
     ],
     panels: {
       leopard_relief: {
@@ -539,6 +589,15 @@ window.BUILDINGS = {
         public_importance:'Large 3D plaster sculptures of wild leopards molded onto house walls.',
         body: `<p>Two opposing leopards modeled in high plaster relief.</p>`,
         apa: 'Farid, S. (2007). Building 17 and architectural symbolism. BIAA.'
+      },
+      figurines_b17: {
+        badge:'Symbolic Material', badgeColor:'#d96b8f', who:'Dr. Lynn Meskell', title:'Clay Figurines', subtitle:'Small modelled human and animal figures',
+        what:'Baked and unbaked clay figurines', where:'Near the relief wall', when:'c. 6400 BCE',
+        why:'Symbolic and ritual practice within the house.',
+        academic_importance:'Figurine contexts allow analysis of symbolism and its links to house life and ritual deposition.',
+        public_importance:'Tiny clay people and animals that hint at beliefs and stories.',
+        body: `<p>Figurines were found in everyday contexts as well as in deliberate deposits.</p>`,
+        apa: 'Meskell, L. (2007). Refiguring the corpus at Çatalhöyük. In C. Renfrew & I. Morley (Eds.), *Image and imagination: A global prehistory of figurative representation* (pp. 137–149). McDonald Institute for Archaeological Research.'
       }
     }
   },
@@ -557,7 +616,7 @@ window.BUILDINGS = {
         academic_importance:'Demonstrates master-level pressure flaking technology.',
         public_importance:'A stock of perfectly crafted obsidian arrowheads kept ready for wild game hunting.',
         body: `<p>Cache of 24 uniform obsidian points cached together.</p>`,
-        apa: 'Carter, T. (2012). Projectile technologies of Late Çatalhöyük.'
+        apa: 'Carter, T., & Milić, M. (2013). The chipped stone. In I. Hodder (Ed.), *Substantive technologies at Çatalhöyük: Reports from the 2000–2008 seasons* (pp. 417–478). Cotsen Institute of Archaeology Press & British Institute at Ankara.'
       }
     }
   },
@@ -581,6 +640,26 @@ window.BUILDINGS = {
     }
   }
 };
+</script>
+
+<script>
+(function() {
+  const byWho = {};
+  Object.values(window.BUILDINGS).forEach(b => {
+    Object.values(b.panels).forEach(p => {
+      (byWho[p.who] = byWho[p.who] || []).push({ title: p.title, badge: p.badge, building: b.num + ': ' + b.title });
+    });
+  });
+  const names = Object.keys(byWho).sort((a, b) => a.replace(/^Dr\. /, '').split(' ').pop().localeCompare(b.replace(/^Dr\. /, '').split(' ').pop()));
+  const total = names.reduce((n, k) => n + byWho[k].length, 0);
+  let html = '<p style="font-size:14px; color:#fdf6e2;">' + names.length + ' analysts across ' + total + ' finds, listed alphabetically by surname.</p>';
+  names.forEach(n => {
+    html += '<h3 style="color:var(--aged-gold); margin-top:16px; font-size:14px; letter-spacing:0.04em;">' + n + '</h3><ul style="margin-left:20px; margin-bottom:8px; line-height:1.7;">';
+    byWho[n].forEach(f => { html += '<li><strong>' + f.title + '</strong> (' + f.badge + ') &middot; ' + f.building + '</li>'; });
+    html += '</ul>';
+  });
+  document.getElementById('credits-body').innerHTML = html;
+})();
 </script>
 
 <script>
@@ -640,7 +719,7 @@ window.BUILDINGS = {
       ${p.body}
       <div class="apa-citation">
         <strong>APA 7th Citation Reference:</strong>
-        ${p.apa}
+        ${p.apa.replace(/\*([^*]+)\*/g, '<em>$1</em>')}
       </div>
     `;
     document.getElementById('modal-badge').textContent = p.badge;
@@ -948,8 +1027,8 @@ window.addEventListener('load', () => {
     refreshVisibility(val);
   };
 
-  // ===================== DIMENSION VIEWS (3D / 4D / 5D / 6D) =====================
-  // Each dimension is cumulative: 3D = space, 4D = + time, 5D = + find data, 6D = + relationships.
+  // ===================== LAYER VIEWS (Space / Time / Finds / Network) =====================
+  // Each layer is cumulative: Space, + Time, + Finds, + Network (relationships).
   let currentDim = 3;
   let playTimer = null;
   const dimGroup = new THREE.Group();
@@ -970,24 +1049,24 @@ window.addEventListener('load', () => {
 
   const DIM_INFO = {
     3: {
-      eyebrow: '3D · Space',
+      eyebrow: 'Space',
       sub: 'Spatial model: footprints, heights, roof hatches and ladders (x · y · z). Click any house to step inside.',
-      caption: '<b>3D · Space</b> — Footprint, height and roof access (x · y · z). Orbit, zoom, and click a house to enter it.'
+      caption: '<b>Space</b> — Footprint, height and roof access (x · y · z). Orbit, zoom, and click a house to enter it.'
     },
     4: {
-      eyebrow: '4D · Space + Time',
+      eyebrow: 'Space + Time',
       sub: 'Time added: press Play to watch the settlement be founded, occupied and abandoned phase by phase.',
-      caption: '<b>4D · + Time</b> — Press ▶ Play or drag the slider. Solid = occupied in that phase, faded = abandoned, hidden = not yet founded.'
+      caption: '<b>Space + Time</b> — Press ▶ Play or drag the slider. Solid = occupied in that phase, faded = abandoned, hidden = not yet founded.'
     },
     5: {
-      eyebrow: '5D · + Find Data',
+      eyebrow: 'Space + Time + Finds',
       sub: 'Data layer added: stack height = documented finds per house; each block is coloured by find type.',
-      caption: '<b>5D · + Find data</b> — Stacks beside each house show the finds documented in this model (one block per find, coloured by type). Time slider still applies.'
+      caption: '<b>+ Finds</b> — Stacks beside each house show the finds documented in this model (one block per find, coloured by type). Time slider still applies.'
     },
     6: {
-      eyebrow: '6D · + Relationships',
-      sub: 'Relational layer added: arcs link houses that share find types or the same specialist analyst.',
-      caption: '<b>6D · + Relationships</b> — Arcs link houses sharing a find type (arc colour) or an analyst (blue). Thicker arc = more shared links. Time slider still applies.'
+      eyebrow: 'Space + Time + Finds + Network',
+      sub: 'Network layer added: arcs link houses that share find types or the same specialist analyst.',
+      caption: '<b>+ Network</b> — Arcs link houses sharing a find type (arc colour) or an analyst (blue). Thicker arc = more shared links. Time slider still applies.'
     }
   };
 
