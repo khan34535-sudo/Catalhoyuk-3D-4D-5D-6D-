@@ -256,6 +256,37 @@
     text-align: right; letter-spacing: 0.06em; text-transform: uppercase;
     pointer-events: none; z-index: 10; line-height: 1.8; background: rgba(36, 29, 23, 0.85); padding: 8px 14px; border: 1px solid var(--glass-border);
   }
+
+  /* TIMELINE PANEL */
+  .tl-wrap { max-width: 980px; }
+  .tl-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+  .tl-chip { border:2px solid var(--c, #f783ac); background:transparent; color:var(--charcoal-ink); padding:6px 14px; border-radius:999px; font-weight:700; font-size:13px; cursor:pointer; font-family:inherit; }
+  .tl-chip.on { background:var(--c, #f783ac); color:#1a140f; }
+  .tl-track { position:relative; display:flex; gap:6px; overflow-x:auto; padding:34px 12px 14px; margin-bottom:12px; scroll-snap-type:x proximity; }
+  .tl-track::before { content:""; position:absolute; left:0; right:0; top:52px; height:6px; border-radius:3px; background:linear-gradient(90deg,#ff6b6b,#ffa94d,#ffd43b,#69db7c,#38d9a9,#4dabf7,#748ffc,#da77f2,#f783ac); min-width:100%; }
+  .tl-node { position:relative; flex:0 0 112px; background:none; border:none; color:var(--charcoal-ink); cursor:pointer; text-align:center; font-family:inherit; padding:0; scroll-snap-align:center; }
+  .tl-dot { display:block; width:34px; height:34px; border-radius:50%; margin:0 auto 8px; background:var(--c); border:4px solid #1a140f; box-shadow:0 0 0 3px var(--c), 0 0 16px var(--c); transition:transform .2s; position:relative; top:-1px; }
+  .tl-node:hover .tl-dot, .tl-node:focus-visible .tl-dot { transform:scale(1.2); }
+  .tl-node.on .tl-dot { transform:scale(1.45); box-shadow:0 0 0 4px #fff, 0 0 24px var(--c); }
+  .tl-node:focus-visible { outline:2px solid #fff; outline-offset:4px; }
+  .tl-yr { display:block; font-size:12px; font-weight:800; color:var(--c); line-height:1.25; }
+  .tl-nm { display:block; font-size:11px; opacity:.85; line-height:1.25; margin-top:2px; }
+  .tl-break { flex:0 0 70px; align-self:flex-start; margin-top:-6px; text-align:center; font-size:11px; font-weight:800; color:#1a140f; background:#fff; border-radius:8px; padding:4px 6px; position:relative; z-index:1; }
+  .tl-card { border-radius:16px; padding:20px 22px; background:var(--parchment-card); border:2px solid var(--c); border-top-width:8px; box-shadow:0 0 28px color-mix(in srgb, var(--c) 35%, transparent); animation: tlpop .35s ease; }
+  @keyframes tlpop { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce) { .tl-card { animation:none; } .tl-dot { transition:none; } }
+  .tl-badge { display:inline-block; background:var(--c); color:#1a140f; font-weight:800; font-size:12px; padding:3px 12px; border-radius:999px; margin-bottom:8px; letter-spacing:.04em; text-transform:uppercase; }
+  .tl-date { font-size:15px; font-weight:800; color:var(--c); }
+  .tl-card h3 { font-size:24px; margin:2px 0 10px; }
+  .tl-why { margin:12px 0; padding:10px 14px; border-left:5px solid var(--c); background:rgba(255,255,255,.06); border-radius:0 10px 10px 0; }
+  .tl-ref { font-size:13px; padding:10px 14px 10px 30px; text-indent:-16px; background:rgba(0,0,0,.25); border-radius:10px; margin-top:8px; line-height:1.55; word-break:break-word; }
+  .tl-ref a { color:var(--c); }
+  .tl-ctrl { display:flex; gap:10px; align-items:center; margin-top:14px; flex-wrap:wrap; }
+  .tl-btn { background:var(--c); color:#1a140f; border:none; border-radius:10px; padding:9px 16px; font-weight:800; cursor:pointer; font-family:inherit; font-size:14px; }
+  .tl-btn.ghost { background:transparent; color:var(--charcoal-ink); border:2px solid var(--c); }
+  .tl-count { margin-left:auto; font-size:13px; opacity:.8; }
+  .tl-bar { height:6px; border-radius:3px; background:rgba(255,255,255,.12); margin-top:12px; overflow:hidden; }
+  .tl-bar > i { display:block; height:100%; width:0; background:linear-gradient(90deg,#ff6b6b,#ffd43b,#38d9a9,#4dabf7,#da77f2); transition:width .3s; }
 </style>
 </head>
 <body>
@@ -274,6 +305,7 @@
     <button class="nav-btn active" id="btn-master" onclick="switchMode('master')">Excavation Site</button>
     <button class="nav-btn" id="btn-index" onclick="openModal('modal-index')">Sector Index (7)</button>
     <button class="nav-btn" id="btn-synthesis" style="border-color:var(--aged-gold); color:var(--aged-gold);" onclick="openModal('modal-synthesis')">Synthesis & Notes</button>
+    <button class="nav-btn" id="btn-timeline" style="border-color:#38d9a9; color:#38d9a9;" onclick="openModal('modal-timeline')">Timeline</button>
     <button class="nav-btn" id="btn-credits" style="border-color:var(--aged-gold); color:var(--aged-gold);" onclick="openModal('modal-credits')">Analyst Credits</button>
   </div>
 </header>
@@ -409,6 +441,26 @@
       <div class="subtitle">Everyone credited across the excavation finds, with the finds they analysed</div>
     </div>
     <div class="modal-body" id="credits-body"></div>
+  </div>
+</div>
+
+<!-- TIMELINE MODAL -->
+<div class="modal-overlay" id="modal-timeline">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('modal-timeline')">✕</button>
+      <span class="spec-badge" style="background:#38d9a9; color:#1a140f;">Timeline</span>
+      <h2>Çatalhöyük Through Time</h2>
+      <div class="subtitle">Click any point to explore the settlement’s story and how we came to know it</div>
+    </div>
+    <div class="modal-body">
+      <div class="tl-wrap">
+        <div class="tl-filters" id="tl-filters"></div>
+        <div class="tl-track" id="tl-track" role="list"></div>
+        <div id="tl-card"></div>
+        <div class="tl-bar"><i id="tl-prog"></i></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -659,6 +711,98 @@ window.BUILDINGS = {
     html += '</ul>';
   });
   document.getElementById('credits-body').innerHTML = html;
+})();
+</script>
+
+<script>
+(function() {
+  const REF = {
+    bayliss: 'Bayliss, A., Brock, F., Farid, S., Hodder, I., Southon, J., & Taylor, R. E. (2015). Getting to the bottom of it all: A Bayesian approach to dating the start of Çatalhöyük. <em>Journal of World Prehistory, 28</em>(1), 1–26. <a href="https://doi.org/10.1007/s10963-015-9083-7" target="_blank" rel="noopener">https://doi.org/10.1007/s10963-015-9083-7</a>',
+    marciniak: 'Marciniak, A., Barański, M. Z., Bayliss, A., Czerniak, L., Goslar, T., Southon, J., & Taylor, R. E. (2015). Fragmenting times: Interpreting a Bayesian chronology for the Late Neolithic occupation of Çatalhöyük East, Turkey. <em>Antiquity, 89</em>(343), 154–176. <a href="https://doi.org/10.15184/aqy.2014.33" target="_blank" rel="noopener">https://doi.org/10.15184/aqy.2014.33</a>',
+    orton: 'Orton, D., Anvari, J., Gibson, C., Last, J., Bogaard, A., Rosenstock, E., & Biehl, P. F. (2018). A tale of two tells: Dating the Çatalhöyük West Mound. <em>Antiquity, 92</em>(363), 620–639. <a href="https://doi.org/10.15184/aqy.2018.91" target="_blank" rel="noopener">https://doi.org/10.15184/aqy.2018.91</a>',
+    mellaart: 'Mellaart, J. (1967). <em>Çatalhöyük: A Neolithic town in Anatolia</em>. Thames & Hudson.',
+    hodder: 'Hodder, I. (2006). <em>Çatalhöyük: The leopard’s tale: Revealing the mysteries of Turkey’s ancient ‘town’</em>. Thames & Hudson.',
+    unesco: 'UNESCO World Heritage Centre. (2012). <em>Neolithic site of Çatalhöyük</em>. <a href="https://whc.unesco.org/en/list/1405" target="_blank" rel="noopener">https://whc.unesco.org/en/list/1405</a>'
+  };
+  const KIND = { settle: 'The Settlement', research: 'The Research' };
+  const COLORS = ['#ff6b6b','#ffa94d','#ffd43b','#69db7c','#38d9a9','#4dabf7','#748ffc','#da77f2','#f783ac','#ff8787','#63e6be','#74c0fc'];
+  const EV = [
+    { k:'settle', y:'c. 7100 BCE', n:'East Mound founded', t:'People settle the East Mound',
+      sum:'Radiocarbon dating places the earliest excavated layers of Çatalhöyük East close to 7100 BCE, when people began building mudbrick houses on the mound.',
+      why:'A Bayesian dating programme set the start about 200 years later than earlier estimates, which changes how long the town’s story runs.', refs:['bayliss'] },
+    { k:'settle', y:'c. 6500 BCE', n:'Life changes', t:'A shift in daily life',
+      sum:'Excavation evidence points to a major change in subsistence and social organisation around 6500 BCE. Overall population fell, and domestic sheep and goat became more important in the diet.',
+      why:'The site was once pictured as unchanging for centuries. The dates show a community that kept adapting.', refs:['orton','marciniak'] },
+    { k:'settle', y:'After c. 6300 BCE', n:'Burials change', t:'Underfloor burials disappear',
+      sum:'After about 6300 BCE the practice of burying people under house floors faded, and the northern part of the East Mound was probably abandoned. Later buildings include dedicated, decorated burial chambers.',
+      why:'Burial practice is one of the best windows into how households and communities understood belonging.', refs:['marciniak','orton'] },
+    { k:'settle', y:'Just after 6000 BCE', n:'East Mound ends', t:'The East Mound goes quiet',
+      sum:'Settlement activity on the East Mound ended just after 6000 cal BCE. Neolithic burial activity stopped a few decades later.',
+      why:'The last buildings sit at the very top of the mound, so careful dating of the final phase was needed to see how the settlement ended.', refs:['marciniak'] },
+    { k:'settle', y:'Turn of the 7th–6th millennium BCE', n:'East meets West', t:'The settlement shifts west',
+      sum:'The West Mound, long treated as a separate Early Chalcolithic site, was being occupied while the East Mound declined. The settlement’s focus appears to have moved gradually over one or two centuries.',
+      why:'This reframes East and West as stages of one long-lived community, not two unrelated places.', refs:['orton'] },
+    { k:'research', y:'1958', n:'Discovery', t:'Mellaart identifies the mound',
+      sum:'James Mellaart recognised the twin mounds near Çumra on the Konya Plain during a survey, setting up the excavations that followed.',
+      why:'Çatalhöyük is a tell: a mound built up from many generations of rebuilt houses, which is why it holds such a deep record.', refs:['mellaart'] },
+    { k:'research', y:'1961–1965', n:'First digs', t:'Mellaart’s excavations',
+      sum:'Excavations directed by James Mellaart exposed a dense town of mudbrick houses with painted and decorated rooms, which made the site world famous. His level scheme is still used to refer to the layers.',
+      why:'These seasons established Çatalhöyük as a key site for understanding early farming communities.', refs:['mellaart'] },
+    { k:'research', y:'1993', n:'New project', t:'Hodder’s team begins',
+      sum:'New excavations directed by Ian Hodder began in 1993. They brought many specialists together to study the site’s architecture, people, animals, plants and objects in detail.',
+      why:'This is where the specialist-led approach you see in this page’s find panels comes from.', refs:['hodder'] },
+    { k:'research', y:'2006', n:'Dating begins', t:'A new dating programme',
+      sum:'A new programme of radiocarbon dating began, designed from the start around Bayesian statistics, to date the whole East Mound sequence precisely.',
+      why:'Combining radiocarbon dates with the stratigraphic order of the layers narrows the uncertainty a lot.', refs:['marciniak','bayliss'] },
+    { k:'research', y:'2012', n:'World Heritage', t:'UNESCO inscription',
+      sum:'The Neolithic Site of Çatalhöyük was inscribed on the UNESCO World Heritage List in 2012.',
+      why:'The listing recognises the site’s global importance and its need for long-term protection.', refs:['unesco'] },
+    { k:'research', y:'2015', n:'New chronology', t:'The Bayesian chronology is published',
+      sum:'Researchers published a Bayesian model of the radiocarbon dates. It places the earliest excavated layers close to 7100 BCE, about 200 years later than previously thought.',
+      why:'It also affects debates about local continuity and how pottery spread.', refs:['bayliss'] },
+    { k:'research', y:'2018', n:'West Mound dated', t:'The West Mound is dated',
+      sum:'Thirty-three new AMS radiocarbon dates showed that occupation of the East and West mounds overlapped, starting in the late seventh millennium BCE.',
+      why:'It shows how new dates can change what archaeologists thought they knew about a famous site.', refs:['orton'] }
+  ];
+  const $ = id => document.getElementById(id);
+  let filter = 'all', idx = 0, timer = null;
+  EV.forEach((e, i) => { e.c = COLORS[i % COLORS.length]; e.i = i; });
+  const visible = () => EV.filter(e => filter === 'all' || e.k === filter);
+
+  function stop() { if (timer) { clearInterval(timer); timer = null; } const b = $('tl-play'); if (b) b.textContent = '▶ Auto-play'; }
+  function renderFilters() {
+    const defs = [['all','All events','#f783ac'], ['settle','The Settlement','#ff6b6b'], ['research','The Research','#4dabf7']];
+    $('tl-filters').innerHTML = defs.map(d => '<button class="tl-chip' + (filter === d[0] ? ' on' : '') + '" style="--c:' + d[2] + '" data-f="' + d[0] + '">' + d[1] + '</button>').join('');
+    $('tl-filters').querySelectorAll('button').forEach(b => b.onclick = () => { stop(); filter = b.dataset.f; idx = 0; render(); });
+  }
+  function renderTrack() {
+    const list = visible(); let html = '';
+    list.forEach((e, n) => {
+      if (n > 0 && list[n-1].k === 'settle' && e.k === 'research') html += '<div class="tl-break">BCE → CE</div>';
+      html += '<button class="tl-node' + (n === idx ? ' on' : '') + '" style="--c:' + e.c + '" data-n="' + n + '" role="listitem" aria-label="' + e.y + ': ' + e.n + '"><span class="tl-dot"></span><span class="tl-yr">' + e.y + '</span><span class="tl-nm">' + e.n + '</span></button>';
+    });
+    $('tl-track').innerHTML = html;
+    $('tl-track').querySelectorAll('.tl-node').forEach(b => b.onclick = () => { stop(); idx = +b.dataset.n; render(); });
+    const on = $('tl-track').querySelector('.tl-node.on'); if (on && on.scrollIntoView) on.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+  }
+  function renderCard() {
+    const list = visible(), e = list[idx];
+    $('tl-card').innerHTML = '<div class="tl-card" style="--c:' + e.c + '"><span class="tl-badge">' + KIND[e.k] + '</span><div class="tl-date">' + e.y + '</div><h3>' + e.t + '</h3><p>' + e.sum + '</p><div class="tl-why"><strong>Why it matters:</strong> ' + e.why + '</div><strong style="font-size:13px;">APA references</strong>' + e.refs.map(r => '<div class="tl-ref">' + REF[r] + '</div>').join('') +
+      '<div class="tl-ctrl"><button class="tl-btn ghost" id="tl-prev">← Previous</button><button class="tl-btn" id="tl-next">Next →</button><button class="tl-btn ghost" id="tl-play">' + (timer ? '❚❚ Pause' : '▶ Auto-play') + '</button><span class="tl-count">' + (idx + 1) + ' of ' + list.length + '</span></div></div>';
+    $('tl-prev').onclick = () => { stop(); go(-1); };
+    $('tl-next').onclick = () => { stop(); go(1); };
+    $('tl-play').onclick = () => { if (timer) { stop(); renderCard(); } else { $('tl-play').textContent = '❚❚ Pause'; timer = setInterval(() => go(1, true), 6000); } };
+    $('tl-prog').style.width = ((idx + 1) / list.length * 100) + '%';
+  }
+  function go(d, wrap) { const n = visible().length; idx = wrap ? (idx + d + n) % n : Math.max(0, Math.min(n - 1, idx + d)); render(); }
+  function render() { renderFilters(); renderTrack(); renderCard(); }
+  render();
+  $('btn-timeline').addEventListener('click', () => { idx = 0; render(); });
+  document.addEventListener('keydown', ev => {
+    if (!$('modal-timeline').classList.contains('open')) return;
+    if (ev.key === 'ArrowRight') { stop(); go(1); } else if (ev.key === 'ArrowLeft') { stop(); go(-1); } else if (ev.key === 'Escape') stop();
+  });
+  $('modal-timeline').addEventListener('click', ev => { if (ev.target === $('modal-timeline')) stop(); });
 })();
 </script>
 
